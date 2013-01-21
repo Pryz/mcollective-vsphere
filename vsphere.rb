@@ -8,9 +8,9 @@
 # /etc/kermit/kermit.cfg properties
 #
 # [vSphere]
-# username=admin@internal
+# username=admin
 # password=password
-# api_url=https://server/api
+# vcenter=vcenter.domain.net
 #
 
 require 'inifile'
