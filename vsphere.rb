@@ -34,8 +34,9 @@ module MCollective
           vim = vsphere_connection()
           vm_name = "#{request[:vm_name]}"
           dc_name = "#{request[:dc_name]}"
+          vm = find_vm(vim, dc_name, vm_name)
           response = execute_task(
-            find_vm(vim, dc_name, vm_name).PowerOnVM_Task(
+            vm.PowerOnVM_Task(
                 :host => vm.summary.runtime.host
             )
           )
@@ -67,7 +68,7 @@ module MCollective
         private
 
         def find_vm(vim, dc_name, vm_name)
-          dc = get_datacenter(vim, dcname)
+          dc = get_datacenter(vim, dc_name)
           dc.find_vm(vm_name) unless dc.nil?
         end
         
